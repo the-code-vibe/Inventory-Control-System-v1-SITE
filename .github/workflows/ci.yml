@@ -36,5 +36,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: ${{ secrets.SSH_PORT }}
           password: ${{ secrets.SSH_PASSWORD }}
-          source: "build/*"
+          source: "dist/*"
           target: "/home/u858577505/domains/collaborative.vitorgabrieldev.io/public_html/gerenciador-estoque/site/"
