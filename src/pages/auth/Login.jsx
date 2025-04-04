@@ -4,10 +4,13 @@ import Label from "../../components/label"
 import Button from "../../components/Button"
 import { login } from "../../services/auth"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
 
 function Login() {
   const [loading, setLoading] = useState(false)
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -21,13 +24,18 @@ function Login() {
 
     try {
       const res = await login(data)
+
       const { token, user } = res.data
+
       localStorage.setItem("token", token)
       localStorage.setItem("user", JSON.stringify(user))
+
       toast.success(res.message || "Login realizado com sucesso")
+
+      navigate("/dashboard");
+
     } catch (err) {
-      const message =
-        err.response?.data?.message || "Erro ao realizar login"
+      const message = err.response?.data?.message || "Erro ao realizar login"
       toast.error(message)
     } finally {
       setLoading(false)
