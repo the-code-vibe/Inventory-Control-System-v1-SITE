@@ -1,6 +1,6 @@
 import Title from "../../components/Title"
 import Input from "../../components/Input"
-import Label from "../../components/Label"
+import Label from "../../components/label"
 import Button from "../../components/Button"
 import { login } from "../../services/auth"
 import { useState } from "react"
