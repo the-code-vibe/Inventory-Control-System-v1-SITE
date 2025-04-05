@@ -1,7 +1,15 @@
+// Imports states global
+import { useAppDispatch } from "../../hooks/useAppDispatch"
+import { useAppSelector } from "../../hooks/useAppSelector"
+import { setUser } from "@/store/slices/user.slice"
+
+// Imports Componentes UI
 import Title from "../../components/Title"
 import Input from "../../components/Input"
 import Label from "../../components/label"
 import Button from "../../components/Button"
+
+// Imports Services and Libs
 import { login } from "../../services/auth"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -11,6 +19,8 @@ function Login() {
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
+
+  const dispatch = useAppDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,16 +34,15 @@ function Login() {
 
     try {
       const res = await login(data)
-
       const { token, user } = res.data
+
+      dispatch(setUser({ ...user }))
 
       localStorage.setItem("token", token)
       localStorage.setItem("user", JSON.stringify(user))
 
       toast.success(res.message || "Login realizado com sucesso")
-
-      navigate("/dashboard");
-
+      navigate("/dashboard")
     } catch (err) {
       const message = err.response?.data?.message || "Erro ao realizar login"
       toast.error(message)
