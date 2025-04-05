@@ -6,16 +6,13 @@ import Dashboard from "./pages/Dashboard"
 
 import PrivateRoute from "./utils/PrivateRoute"
 import PublicRoute from "./utils/PublicRoute"
-import OpenRoute from "./utils/OpenRoute"
+// import OpenRoute from "./utils/OpenRoute"
+import RedirectRoute from "./utils/RedirectRoute"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <OpenRoute>
-        <App />
-      </OpenRoute>
-    )
+    element: <RedirectRoute />
   },
   {
     path: "/login",
