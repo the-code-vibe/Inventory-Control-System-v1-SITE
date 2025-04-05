@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --primary: #405FF2;
+    --primary-rgb: 64, 95, 242;
+    --primary-error: #FF3535;
+    --primary-error-rgb: 255 53 53;
+}
